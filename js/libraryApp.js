@@ -10,7 +10,7 @@ function Book(author, title, numOfPages, read){
 }
 
 // Every book object will inherit a 'has been read' function.
-Book.prototype.read = function(){
+Book.prototype.hasBeenread = function(){
     if(this.read){
         this.read = false;
     }
