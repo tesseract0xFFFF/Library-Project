@@ -11,7 +11,32 @@
 <body>
     <div class="mainContainer">
         <div class="sidebar">
-            <button id="addButt">Add</button>
+
+            <div class="buttonArea">
+                <button id="addButt">Add</button>
+            </div>
+
+            <div class="formDisplayArea">
+                <form id="addBookForm" style="display: none;">
+                    <label for="bookNameInput">Book Name:</label>
+                    <input type="text" id="bookNameInput" name="bookName"><br><br>
+                    
+                    <label for="authorInput">Author:</label>
+                    <input type="text" id="authorInput" name="author"><br><br>
+                    
+                    <label for="pagesInput">Number of Pages:</label>
+                    <input type="number" id="pagesInput" name="pages"><br><br>
+                    
+                    <label for="completionInput">Completion Status:</label>
+                    <select id="completionInput" name="completion">
+                      <option value="notRead">Not read</option>
+                      <option value="read">Read</option>
+                    </select><br><br>
+                    
+                    <input type="submit" value="Add Book">
+                  </form>              
+            </div>
+            
         </div>
         <div class="bookCollection">
             <div class="book">book1</div>

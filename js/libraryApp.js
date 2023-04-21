@@ -18,3 +18,14 @@ Book.prototype.hasBeenread = function(){
         this.read = true;
     }
 }
+
+const button = document.getElementById('addButt');
+const form = document.getElementById('addBookForm');
+
+button.addEventListener('click', function() {
+  if (form.style.display === 'none') {
+    form.style.display = 'block';
+  } else {
+    form.style.display = 'none';
+  }
+});
