@@ -29,3 +29,41 @@ button.addEventListener('click', function() {
     form.style.display = 'none';
   }
 });
+
+// Handling form submission.
+form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // getting form input.
+    const bookNameInput = document.getElementById('bookNameInput');
+    const authorInput = document.getElementById('authorInput');
+    const pagesInput = document.getElementById('pagesInput');
+    const completionInput = document.getElementById('completionInput');
+
+    // minimal input validation.
+    if (bookNameInput.value === '' || authorInput.value === '' || pagesInput.value === '') {
+        alert('Please fill in all required fields.');
+        return;
+      }    
+  
+
+    // Create a new book object using the input values
+    const newBook = new Book(bookNameInput.value, authorInput.value, pagesInput.value, completionInput.value);
+  
+    // Push the new book object into the library array
+    myLibrary.push(newBook);
+    
+    // gets the new book's index in the array.
+    const currentBookIndex = myLibrary.indexOf(newBook);
+      
+
+
+    //Clears form inputs.
+    bookNameInput.value = '';
+    authorInput.value = '';
+    pagesInput.value = '';
+    completionInput.value = 'Not read';
+
+
+  
+})
