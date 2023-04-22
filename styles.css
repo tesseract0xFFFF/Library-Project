@@ -31,7 +31,8 @@
     grid-area: 1 / 2 / 6 / 6;
     display: grid;
     grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 300px));
+    gap: 10px;
 }
 
 .book{
@@ -39,6 +40,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-color: blue;
+    border-width: 2px;
+    background-color: beige;
 }
 
 .formDisplayArea{
