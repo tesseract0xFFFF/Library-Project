@@ -1,12 +1,31 @@
 // Books are stored here.
 let myLibrary = [];
 
-// Just a book object constructor.
+// The book object constructor.
 function Book(author, title, numOfPages, read){
     this.author = author;
     this.title = title;
     this.numOfPages = numOfPages;
     this.read = Boolean(read);
+}
+
+// displays the book.
+function displayBook(book){
+
+  const bookDiv = document.createElement('div');
+  bookDiv.classList.add('book');
+
+  const authorDiv = document.createElement('div');
+  authorDiv.textContent = 'Author name: ${book.author}';
+
+  const titleDiv = document.createElement('div');
+  titleDiv.textContent = 'Title: ${book.title}';
+
+  const numOfPagesDiv = document.createElement('div');
+  numOfPagesDiv.textContent = 'Number of pages: ${book.numOfPages}';
+
+  const readDiv = document.createElement('div');
+  readDiv.textContent = 'Read: ${book.read}';
 }
 
 // Every book object will inherit a 'has been read' function.
@@ -53,17 +72,10 @@ form.addEventListener('submit', function(event) {
     // Push the new book object into the library array
     myLibrary.push(newBook);
     
-    // gets the new book's index in the array.
-    const currentBookIndex = myLibrary.indexOf(newBook);
-      
-
-
+    
     //Clears form inputs.
     bookNameInput.value = '';
     authorInput.value = '';
     pagesInput.value = '';
     completionInput.value = 'Not read';
-
-
-  
 })
