@@ -2,33 +2,36 @@
 let myLibrary = [];
 
 // The book object constructor.
-function Book(author, title, numOfPages, read){
-    this.author = author;
+function Book(title, author, numOfPages, read){
     this.title = title;
+    this.author = author; 
     this.numOfPages = numOfPages;
-    this.read = Boolean(read);
+    this.read = read;
 }
 
 // displays the book.
 function displayBook(book){
 
+  const bookCollectionDisplay = document.querySelector('.bookCollection');
   const bookDiv = document.createElement('div');
   bookDiv.classList.add('book');
+  
+  
+  const titleDiv = document.createElement('div');
+  titleDiv.textContent = `Title: ${book.title}`;
 
   const authorDiv = document.createElement('div');
-  authorDiv.textContent = 'Author name: ${book.author}';
-
-  const titleDiv = document.createElement('div');
-  titleDiv.textContent = 'Title: ${book.title}';
+  authorDiv.textContent = `Author name: ${book.author}`;
 
   const numOfPagesDiv = document.createElement('div');
-  numOfPagesDiv.textContent = 'Number of pages: ${book.numOfPages}';
+  numOfPagesDiv.textContent = `Number of pages: ${book.numOfPages}`;
 
   const readDiv = document.createElement('div');
-  readDiv.textContent = 'Read: ${book.read}';
+  readDiv.textContent = `Read: ${book.read}`;
 
-  bookDiv.appendChild(authorDiv);
+  bookCollectionDisplay.appendChild(bookDiv);
   bookDiv.appendChild(titleDiv);
+  bookDiv.appendChild(authorDiv);
   bookDiv.appendChild(numOfPagesDiv);
   bookDiv.appendChild(readDiv);
 }
@@ -43,6 +46,7 @@ Book.prototype.hasBeenread = function(){
     }
 }
 
+// displaying the form when 'add' is clicked.
 const button = document.getElementById('addButt');
 const form = document.getElementById('addBookForm');
 
@@ -77,6 +81,8 @@ form.addEventListener('submit', function(event) {
     // Push the new book object into the library array
     myLibrary.push(newBook);
     
+    // will display the book object.
+      displayBook(newBook);
     
     //Clears form inputs.
     bookNameInput.value = '';
