@@ -26,6 +26,11 @@ function displayBook(book){
 
   const readDiv = document.createElement('div');
   readDiv.textContent = 'Read: ${book.read}';
+
+  bookDiv.appendChild(authorDiv);
+  bookDiv.appendChild(titleDiv);
+  bookDiv.appendChild(numOfPagesDiv);
+  bookDiv.appendChild(readDiv);
 }
 
 // Every book object will inherit a 'has been read' function.
