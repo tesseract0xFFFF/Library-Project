@@ -72,7 +72,12 @@ form.addEventListener('submit', function(event) {
     if (bookNameInput.value === '' || authorInput.value === '' || pagesInput.value === '') {
         alert('Please fill in all required fields.');
         return;
-      }    
+      } 
+      
+    if(pagesInput.value < 0){
+      alert('Values smaller than zero are not allowed');
+      return;
+    }
   
 
     // Create a new book object using the input values
