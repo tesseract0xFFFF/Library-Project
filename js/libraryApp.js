@@ -16,7 +16,7 @@ function displayBook(book){
   const bookDiv = document.createElement('div');
   bookDiv.classList.add('book');
   
-  
+
   const titleDiv = document.createElement('div');
   titleDiv.textContent = `Title: ${book.title}`;
 
@@ -29,11 +29,15 @@ function displayBook(book){
   const readDiv = document.createElement('div');
   readDiv.textContent = `Read: ${book.read}`;
 
+  const deleteButton = document.createElement('button');
+  deleteButton.textContent = 'Delete';
+
   bookCollectionDisplay.appendChild(bookDiv);
   bookDiv.appendChild(titleDiv);
   bookDiv.appendChild(authorDiv);
   bookDiv.appendChild(numOfPagesDiv);
   bookDiv.appendChild(readDiv);
+  bookDiv.appendChild(deleteButton);
 }
 
 // Every book object will inherit a 'has been read' function.
@@ -87,7 +91,9 @@ form.addEventListener('submit', function(event) {
     myLibrary.push(newBook);
     
     // will display the book object.
-      displayBook(newBook);
+    displayBook(newBook);
+
+
     
     //Clears form inputs.
     bookNameInput.value = '';
