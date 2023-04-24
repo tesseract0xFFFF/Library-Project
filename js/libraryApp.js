@@ -9,13 +9,53 @@ function Book(title, author, numOfPages, read){
     this.read = read;
 }
 
+// Every book object will inherit a 'has been read' function.
+Book.prototype.hasBeenread = function(){
+
+  if(this.read === 'true'){
+      this.read = 'false';
+      return 'Not Read';
+  }
+  else{
+      this.read = 'true';
+      return 'Read';
+  }
+}
+
+// delets both book objects stored in the myLibrary array and their 
+// respective DOM elements.
+function deleteBook(bookToDelete){
+
+  // Accesses the object's property pointing to the DOM element and then deletes it.
+  const DomElementInBookObject = this.domElement;
+  DomElementInBookObject.remove();
+
+  // looks for the book object inside of the array and deletes it.
+  const bookObjectIndex = myLibrary.findIndex(book => book === this);
+  // returns if no match if found (eg. library array is empty);
+  if(bookObjectIndex === -1){
+    return;
+  }
+  myLibrary.splice(bookObjectIndex, 1);
+}
+
+// changes book reading status.
+function readOrNot(bookToToggle){
+  //Accesses the object's property pointing to the DOM element.
+  // and changes its reading status' button's text context.
+  const DomElementInBookObject = this.domElement;
+  DomElementInBookObject.children[5].textContent = this.hasBeenread();
+}
+
+
 // displays the book.
 function displayBook(book){
 
   const bookCollectionDisplay = document.querySelector('.bookCollection');
   const bookDiv = document.createElement('div');
   bookDiv.classList.add('book');
-  
+  // Book object gets a property that points to the book DOM element.
+  book.domElement = bookDiv;
 
   const titleDiv = document.createElement('div');
   titleDiv.textContent = `Title: ${book.title}`;
@@ -31,6 +71,12 @@ function displayBook(book){
 
   const deleteButton = document.createElement('button');
   deleteButton.textContent = 'Delete';
+  deleteButton.addEventListener('click', deleteBook.bind(book));
+
+  const readButton = document.createElement('button');
+  readButton.textContent = 'Read';
+  readButton.classList.add('readButton');
+  readButton.addEventListener('click', readOrNot.bind(book));
 
   bookCollectionDisplay.appendChild(bookDiv);
   bookDiv.appendChild(titleDiv);
@@ -38,17 +84,11 @@ function displayBook(book){
   bookDiv.appendChild(numOfPagesDiv);
   bookDiv.appendChild(readDiv);
   bookDiv.appendChild(deleteButton);
+  bookDiv.appendChild(readButton);
 }
 
-// Every book object will inherit a 'has been read' function.
-Book.prototype.hasBeenread = function(){
-    if(this.read){
-        this.read = false;
-    }
-    else{
-        this.read = true;
-    }
-}
+
+
 
 // displaying the form when 'add' is clicked.
 const button = document.getElementById('addButt');
@@ -93,8 +133,6 @@ form.addEventListener('submit', function(event) {
     // will display the book object.
     displayBook(newBook);
 
-
-    
     //Clears form inputs.
     bookNameInput.value = '';
     authorInput.value = '';
